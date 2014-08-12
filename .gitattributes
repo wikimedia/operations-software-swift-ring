@@ -1,0 +1,2 @@
+*.ring.gz filter=fat -crlf
+*.builder filter=fat -crlf
