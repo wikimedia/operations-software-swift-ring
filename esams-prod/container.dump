@@ -1,0 +1,12 @@
+esams-prod/container.builder, build version 8
+65536 partitions, 2.000000 replicas, 1 regions, 3 zones, 8 devices, 0.01 balance
+The minimum number of hours before a partition can be reassigned is 1
+Devices:    id  region  zone      ip address  port  replication ip  replication port      name weight partitions balance meta
+             0       1     4      10.20.0.17  6001      10.20.0.17              6001      sda3 100.00      16383   -0.01 
+             1       1     4      10.20.0.18  6001      10.20.0.18              6001      sda3 100.00      16384    0.00 
+             2       1     1      10.20.0.19  6001      10.20.0.19              6001      sda3 100.00      16385    0.01 
+             3       1     2      10.20.0.20  6001      10.20.0.20              6001      sda3 100.00      16384    0.00 
+             4       1     4      10.20.0.17  6001      10.20.0.17              6001      sdb3 100.00      16384    0.00 
+             5       1     4      10.20.0.18  6001      10.20.0.18              6001      sdb3 100.00      16383   -0.01 
+             6       1     1      10.20.0.19  6001      10.20.0.19              6001      sdb3 100.00      16385    0.01 
+             7       1     2      10.20.0.20  6001      10.20.0.20              6001      sdb3 100.00      16384    0.00 
