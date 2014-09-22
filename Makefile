@@ -1,5 +1,5 @@
 DESTHOST=palladium.eqiad.wmnet
-TARGETS=eqiad-prod esams-prod
+TARGETS=eqiad-prod esams-prod codfw-prod
 
 BUILDER_FILES=$(foreach dir,$(TARGETS),$(wildcard $(dir)/*.builder))
 RING_FILES=$(foreach builder,$(BUILDER_FILES),$(subst .builder,.ring.gz,$(builder)))
