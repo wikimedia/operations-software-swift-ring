@@ -1,6 +1,6 @@
 codfw-prod/object.builder, build version 137
 65536 partitions, 3.000000 replicas, 1 regions, 3 zones, 135 devices, 0.04 balance
-The minimum number of hours before a partition can be reassigned is 0
+The minimum number of hours before a partition can be reassigned is 3
 Devices:    id  region  zone      ip address  port  replication ip  replication port      name weight partitions balance meta
              0       1     1     10.192.0.19  6000     10.192.0.19              6000      sda1 2000.00       1457    0.04 
              1       1     1     10.192.0.19  6000     10.192.0.19              6000      sdb1 2000.00       1457    0.04 
