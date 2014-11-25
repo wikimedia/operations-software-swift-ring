@@ -5,7 +5,7 @@ BUILDER_FILES=$(foreach dir,$(TARGETS),$(wildcard $(dir)/*.builder))
 RING_FILES=$(foreach builder,$(BUILDER_FILES),$(subst .builder,.ring.gz,$(builder)))
 DUMP_FILES=$(foreach builder,$(BUILDER_FILES),$(subst .builder,.dump,$(builder)))
 
-rebuild: $(DUMP_FILES) $(RING_FILES)
+rebuild: $(RING_FILES) $(DUMP_FILES)
 
 %.dump: %.builder
 	swift-ring-builder $^ > $@
