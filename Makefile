@@ -1,4 +1,4 @@
-DESTHOST=palladium.eqiad.wmnet
+DESTHOST=
 TARGETS=eqiad-prod esams-prod codfw-prod
 
 BUILDER_FILES=$(foreach dir,$(TARGETS),$(wildcard $(dir)/*.builder))
@@ -17,6 +17,7 @@ rebuild: $(RING_FILES) $(DUMP_FILES)
 
 # TODO(fgiunchedi): rsync HEAD, not the working tree
 deploy:
+	[ -n "$(DESTHOST)" ] || { echo 'set DESTHOST to deploy'; exit 1; }
 	rsync --progress --verbose --archive --compress --relative \
 		$(RING_FILES) $(BUILDER_FILES) $(DESTHOST):swift-ring
 	ssh $(DESTHOST) "sudo rsync --verbose --backup --recursive \

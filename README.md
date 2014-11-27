@@ -27,7 +27,7 @@ Usage
   review
 * Once merged, deploy the rings to the puppet master:
 
-        make deploy
+        make deploy DESTHOST=puppet.eqiad.wmnet
 
 
 Testing
