@@ -11,7 +11,7 @@ rebuild: $(RING_FILES) $(DUMP_FILES)
 	swift-ring-builder $^ > $@
 
 %.ring.gz: %.builder
-	# don't fail when rebalance exits 1 (nothing has been done)
+# don't fail when rebalance exits 1 (nothing has been done)
 	swift-ring-builder $^ rebalance ; [ $$? -le 1 ] || exit 2
 	swift-ring-builder $^ write_ring
 
