@@ -16,15 +16,15 @@ the binary files.
 Usage
 -----
 
-* Make sure you have `swift-ring-builder` tool (`swift` debian package)
+* Make sure you have `swift-ring-builder` tool (`swift` debian package >= 2.2.2)
 * Make the appropriate changes to the relevant swift cluster and ring (most
   likely `object.builder`)
 * Rebuild the rings that have been changed:
 
         make
 
-* Commit the result (`.ring.gz` `.builder` and `.dump` files) and send it for
-  review
+* Commit the result (`.ring.gz` `.builder` `.dump` and `.dispersion` files) and
+  optionally send it for review
 * Once merged, deploy the rings to the puppet master:
 
         make deploy DESTHOST=puppet.eqiad.wmnet
