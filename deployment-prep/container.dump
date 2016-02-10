@@ -1,0 +1,7 @@
+deployment-prep/container.builder, build version 2
+65536 partitions, 2.000000 replicas, 1 regions, 2 zones, 2 devices, 0.00 balance, 0.00 dispersion
+The minimum number of hours before a partition can be reassigned is 3
+The overload factor is 0.00% (0.000000)
+Devices:    id  region  zone      ip address  port  replication ip  replication port      name weight partitions balance meta
+             0       1     1     10.68.16.24  6001     10.68.16.24              6001     lv-a1 1000.00      65536    0.00 
+             1       1     2    10.68.21.135  6001    10.68.21.135              6001     lv-a1 1000.00      65536    0.00 
