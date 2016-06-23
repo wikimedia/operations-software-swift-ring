@@ -5,21 +5,34 @@ set -u
 
 zone=$1
 ip=$2
+partition_scheme=${3:-dell}
 region=1
 object_weight=${object_weight:=2000}
 nonobject_weight=${nonobject_weight:=92}
 
-for dev in sda1 sdb1 sdc1 sdd1 sde1 sdf1 sdg1 sdh1 sdi1 sdj1 sdk1 sdl1 ; do
+if [ "${partition_scheme}" == "dell" ]; then
+  object_partitions="sda1 sdb1 sdc1 sdd1 sde1 sdf1 sdg1 sdh1 sdi1 sdj1 sdk1 sdl1"
+  account_partitions="sdm3 sdn3"
+  container_partitions="sdm3 sdn3"
+fi
+
+if [ "${partition_scheme}" == "hp" ]; then
+  object_partitions="sdc1 sdd1 sde1 sdf1 sdg1 sdh1 sdi1 sdj1 sdk1 sdl1 sdm1 sdn1"
+  account_partitions="sda3 sdb3"
+  container_partitions="sda3 sdb3"
+fi
+
+for dev in $object_partitions; do
   swift-ring-builder object.builder add --region $region --zone $zone \
     --ip $ip --port 6000 --weight $object_weight --device $dev
 done
 
-for dev in sdm3 sdn3; do
+for dev in $container_partitions; do
   swift-ring-builder container.builder add --region $region --zone $zone \
     --ip $ip --port 6001 --weight $nonobject_weight --device $dev
 done
 
-for dev in sdm3 sdn3; do
+for dev in $account_partitions; do
   swift-ring-builder account.builder add --region $region --zone $zone \
     --ip $ip --port 6002 --weight $nonobject_weight --device $dev
 done
