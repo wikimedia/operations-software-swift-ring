@@ -3,12 +3,21 @@
 set -e
 set -u
 
-zone=$1
-ip=$2
+zone=${1:-}
+ip=${2:-}
 partition_scheme=${3:-dell}
 region=1
 object_weight=${object_weight:=3000}
 nonobject_weight=${nonobject_weight:=92}
+
+if [ -z "${zone}" -o -z "${ip}" ]; then
+  echo "usage: $(basename $0) ZONE IP_ADDRESS [PART_SCHEME]"
+  echo "   PART_SCHEME can be one of: dell hp labs"
+  echo "   from environment:"
+  echo "     * object_weight initial object weight"
+  echo "     * nonobject_weight initial non-object weight"
+  exit 1
+fi
 
 if [ "${partition_scheme}" == "dell" ]; then
   object_partitions="sda1 sdb1 sdc1 sdd1 sde1 sdf1 sdg1 sdh1 sdi1 sdj1 sdk1 sdl1"
