@@ -1,6 +1,6 @@
 codfw-prod/object.builder, build version 1614
 65536 partitions, 3.000000 replicas, 1 regions, 4 zones, 468 devices, 0.66 balance, 0.00 dispersion
-The minimum number of hours before a partition can be reassigned is 3 (2:59:57 remaining)
+The minimum number of hours before a partition can be reassigned is 24 (20:43:50 remaining)
 The overload factor is 5.00% (0.050000)
 Ring file codfw-prod/object.ring.gz is up-to-date
 Devices:    id  region  zone      ip address  port  replication ip  replication port      name weight partitions balance flags meta
