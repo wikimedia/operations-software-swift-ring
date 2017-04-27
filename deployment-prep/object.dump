@@ -1,10 +1,10 @@
-deployment-prep/object.builder, build version 8
+deployment-prep/object.builder, build version 11
 65536 partitions, 2.000000 replicas, 1 regions, 2 zones, 4 devices, 0.00 balance, 0.00 dispersion
-The minimum number of hours before a partition can be reassigned is 3 (2:59:51 remaining)
+The minimum number of hours before a partition can be reassigned is 3 (2:59:50 remaining)
 The overload factor is 0.00% (0.000000)
 Ring file deployment-prep/object.ring.gz is up-to-date
-Devices:    id  region  zone      ip address  port  replication ip  replication port      name weight partitions balance flags meta
-             0       1     1     10.68.16.24  6000     10.68.16.24              6000     lv-a1 1000.00      32768    0.00       
-             1       1     2    10.68.21.135  6000    10.68.21.135              6000     lv-a1 1000.00      32768    0.00       
-             2       1     1    10.68.22.125  6000    10.68.22.125              6000     lv-a1 1000.00      32768    0.00       
-             3       1     2    10.68.16.139  6000    10.68.16.139              6000     lv-a1 1000.00      32768    0.00       
+Devices:   id region zone   ip address:port replication ip:port  name weight partitions balance flags meta
+            0      1    1  10.68.16.24:6000    10.68.16.24:6000 lv-a1 300.00      15124    0.00       
+            1      1    2 10.68.21.135:6000   10.68.21.135:6000 lv-a1 300.00      15124    0.00       
+            2      1    1 10.68.22.125:6000   10.68.22.125:6000 lv-a1 1000.00      50412   -0.00       
+            3      1    2 10.68.16.139:6000   10.68.16.139:6000 lv-a1 1000.00      50412   -0.00       
