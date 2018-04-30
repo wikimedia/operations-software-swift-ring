@@ -5,14 +5,14 @@ set -u
 
 zone=${1:-}
 ip=${2:-}
-partition_scheme=${3:-dell}
+partition_scheme=${3:-prod}
 region=1
 object_weight=${object_weight:=3000}
 nonobject_weight=${nonobject_weight:=92}
 
 if [ -z "${zone}" -o -z "${ip}" ]; then
   echo "usage: $(basename $0) ZONE IP_ADDRESS [PART_SCHEME]"
-  echo "   PART_SCHEME can be one of: dell hp labs"
+  echo "   PART_SCHEME can be one of: dell prod labs"
   echo "   from environment:"
   echo "     * object_weight initial object weight"
   echo "     * nonobject_weight initial non-object weight"
@@ -23,23 +23,31 @@ if [ "${partition_scheme}" == "dell" ]; then
   object_partitions="sda1 sdb1 sdc1 sdd1 sde1 sdf1 sdg1 sdh1 sdi1 sdj1 sdk1 sdl1"
   account_partitions="sdm3 sdn3"
   container_partitions="sdm3 sdn3"
+  ssd_partitions="sdm4 sdn4"
 fi
 
-if [ "${partition_scheme}" == "hp" ]; then
+if [ "${partition_scheme}" == "prod" ]; then
   object_partitions="sdc1 sdd1 sde1 sdf1 sdg1 sdh1 sdi1 sdj1 sdk1 sdl1 sdm1 sdn1"
   account_partitions="sda3 sdb3"
   container_partitions="sda3 sdb3"
+  ssd_partitions="sda4 sdb4"
 fi
 
 if [ "${partition_scheme}" == "labs" ]; then
   object_partitions="lv-a1"
   account_partitions="lv-a1"
   container_partitions="lv-a1"
+  ssd_partitions=""
 fi
 
 for dev in $object_partitions; do
   swift-ring-builder object.builder add --region $region --zone $zone \
     --ip $ip --port 6000 --weight $object_weight --device $dev
+done
+
+for dev in $ssd_partitions; do
+  swift-ring-builder object-1.builder add --region $region --zone $zone \
+    --ip $ip --port 6000 --weight $nonobject_weight --device $dev
 done
 
 for dev in $container_partitions; do
