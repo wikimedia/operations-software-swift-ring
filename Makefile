@@ -30,5 +30,9 @@ deploy:
 
 clean:
 	-rm */backups/*
+	rm -v $(DUMP_FILES) $(DISPERSION_FILES)
 
-.PHONY: deploy clean
+ring_clean:
+	rm -v $(RING_FILES)
+
+.PHONY: deploy clean ring_clean
