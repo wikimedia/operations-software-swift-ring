@@ -3,19 +3,69 @@
 set -e
 set -u
 
-zone=${1:-}
-ip=${2:-}
-partition_scheme=${3:-prod}
-region=1
+address=${1:-}
+partition_scheme=${partition_scheme:=prod}
 object_weight=${object_weight:=3000}
 nonobject_weight=${nonobject_weight:=92}
+region=1
 
-if [ -z "${zone}" -o -z "${ip}" ]; then
-  echo "usage: $(basename $0) ZONE IP_ADDRESS [PART_SCHEME]"
+function zone_for_address() {
+  local address=$1
+  local zone=""
+
+  case "$address" in
+    # eqiad
+    10.64.0.*)
+      zone=1
+    ;;
+    10.64.16.*)
+      zone=6
+    ;;
+    10.64.32.*)
+      zone=3
+    ;;
+    10.64.48.*)
+      zone=5
+    ;;
+    # codfw
+    10.192.0.*)
+      zone=1
+    ;;
+    10.192.16.*)
+      zone=2
+    ;;
+    10.192.32.*)
+      zone=3
+    ;;
+    10.192.48.*)
+      zone=4
+    ;;
+  esac
+
+  if [ -n "${zone}" ]; then
+    echo "Mapping ${address} to zone ${zone}" >&2
+  fi
+
+  echo $zone
+}
+
+
+if [ -z "${address}" ]; then
+  echo "usage: $(basename $0) IP_ADDRESS"
   echo "   PART_SCHEME can be one of: dell prod labs"
   echo "   from environment:"
   echo "     * object_weight initial object weight"
   echo "     * nonobject_weight initial non-object weight"
+  echo "     * zone override zone autodetection"
+  echo "     * partition_scheme override partition scheme (dell/prod/labs)"
+  exit 1
+fi
+
+zone=${zone:-$(zone_for_address ${address})}
+
+if [ -z "${zone}" ]; then
+  echo "Could not find zone for ${address}"
+  echo "Tried environment and autodetection"
   exit 1
 fi
 
@@ -42,20 +92,20 @@ fi
 
 for dev in $object_partitions; do
   swift-ring-builder object.builder add --region $region --zone $zone \
-    --ip $ip --port 6000 --weight $object_weight --device $dev
+    --ip $address --port 6000 --weight $object_weight --device $dev
 done
 
 for dev in $ssd_partitions; do
   swift-ring-builder object-1.builder add --region $region --zone $zone \
-    --ip $ip --port 6000 --weight $nonobject_weight --device $dev
+    --ip $address --port 6000 --weight $nonobject_weight --device $dev
 done
 
 for dev in $container_partitions; do
   swift-ring-builder container.builder add --region $region --zone $zone \
-    --ip $ip --port 6001 --weight $nonobject_weight --device $dev
+    --ip $address --port 6001 --weight $nonobject_weight --device $dev
 done
 
 for dev in $account_partitions; do
   swift-ring-builder account.builder add --region $region --zone $zone \
-    --ip $ip --port 6002 --weight $nonobject_weight --device $dev
+    --ip $address --port 6002 --weight $nonobject_weight --device $dev
 done
