@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+set -u
+
+object_weight=${object_weight:-}
+nonobject_weight=${nonobject_weight:-}
+ssd_weight=${ssd_weight:-}
+
+for host in $@; do
+  if [ -n "$object_weight" ]; then
+    swift-ring-builder object.builder set_weight --yes --ip $host $object_weight
+  fi
+  if [ -n "$ssd_weight" ]; then
+    swift-ring-builder object-1.builder set_weight --yes --ip $host $ssd_weight
+  fi
+  if [ -n "$nonobject_weight" ]; then
+    swift-ring-builder account.builder set_weight --yes --ip $host $nonobject_weight
+    swift-ring-builder container.builder set_weight --yes --ip $host $nonobject_weight
+  fi
+done
