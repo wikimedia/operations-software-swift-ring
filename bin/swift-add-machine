@@ -90,14 +90,17 @@ if [ "${partition_scheme}" == "labs" ]; then
   ssd_partitions=""
 fi
 
+devport=6010
 for dev in $object_partitions; do
   swift-ring-builder object.builder add --region $region --zone $zone \
-    --ip $address --port 6000 --weight $object_weight --device $dev
+    --ip $address --port $devport --weight $object_weight --device $dev
+  let devport++
 done
 
 for dev in $ssd_partitions; do
   swift-ring-builder object-1.builder add --region $region --zone $zone \
-    --ip $address --port 6000 --weight $nonobject_weight --device $dev
+    --ip $address --port $devport --weight $nonobject_weight --device $dev
+  let devport++
 done
 
 for dev in $container_partitions; do
