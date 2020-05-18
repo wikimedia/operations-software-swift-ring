@@ -7,7 +7,7 @@ address=${1:-}
 partition_scheme=${partition_scheme:=prod}
 object_weight=${object_weight:=3000}
 nonobject_weight=${nonobject_weight:=92}
-region=1
+region=${region:=1}
 
 function zone_for_address() {
   local address=$1
