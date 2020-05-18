@@ -57,7 +57,7 @@ if [ -z "${address}" ]; then
   echo "     * object_weight initial object weight"
   echo "     * nonobject_weight initial non-object weight"
   echo "     * zone override zone autodetection"
-  echo "     * partition_scheme override partition scheme (dell/prod/labs)"
+  echo "     * partition_scheme override partition scheme (prod/labs)"
   exit 1
 fi
 
@@ -67,13 +67,6 @@ if [ -z "${zone}" ]; then
   echo "Could not find zone for ${address}"
   echo "Tried environment and autodetection"
   exit 1
-fi
-
-if [ "${partition_scheme}" == "dell" ]; then
-  object_partitions="sda1 sdb1 sdc1 sdd1 sde1 sdf1 sdg1 sdh1 sdi1 sdj1 sdk1 sdl1"
-  account_partitions="sdm3 sdn3"
-  container_partitions="sdm3 sdn3"
-  ssd_partitions="sdm4 sdn4"
 fi
 
 if [ "${partition_scheme}" == "prod" ]; then
