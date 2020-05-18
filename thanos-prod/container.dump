@@ -1,0 +1,14 @@
+thanos-prod/container.builder, build version 9, id e3cc8449ea4044cfb28f7d9c4fb3830a
+65536 partitions, 4.000000 replicas, 1 regions, 4 zones, 8 devices, 0.00 balance, 0.00 dispersion
+The minimum number of hours before a partition can be reassigned is 24 (23:59:36 remaining)
+The overload factor is 0.00% (0.000000)
+Ring file thanos-prod/container.ring.gz is up-to-date
+Devices:   id region zone    ip address:port replication ip:port  name weight partitions balance flags meta
+            0      2    1  10.192.0.194:6001   10.192.0.194:6001  sda3 100.00      32768    0.00       
+            1      2    1  10.192.0.194:6001   10.192.0.194:6001  sdb3 100.00      32768    0.00       
+            2      2    2 10.192.16.136:6001  10.192.16.136:6001  sda3 100.00      32768    0.00       
+            3      2    2 10.192.16.136:6001  10.192.16.136:6001  sdb3 100.00      32768    0.00       
+            4      2    3 10.192.32.107:6001  10.192.32.107:6001  sda3 100.00      32768    0.00       
+            5      2    3 10.192.32.107:6001  10.192.32.107:6001  sdb3 100.00      32768    0.00       
+            6      2    4  10.192.48.27:6001   10.192.48.27:6001  sda3 100.00      32768    0.00       
+            7      2    4  10.192.48.27:6001   10.192.48.27:6001  sdb3 100.00      32768    0.00       

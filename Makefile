@@ -1,5 +1,5 @@
 DESTHOST=
-TARGETS=eqiad-prod esams-prod codfw-prod
+TARGETS=eqiad-prod esams-prod codfw-prod thanos-prod
 
 BUILDER_FILES=$(foreach dir,$(TARGETS),$(wildcard $(dir)/*.builder))
 RING_FILES=$(foreach builder,$(BUILDER_FILES),$(subst .builder,.ring.gz,$(builder)))
