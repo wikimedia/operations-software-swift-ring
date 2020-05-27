@@ -1,0 +1,16 @@
+#!/bin/bash
+# remove a machine (ip address) from an existing swift cluster
+set -e
+set -u
+
+address=${1:-}
+
+if [ -z "${address}" ]; then
+  echo "usage: $(basename $0) IP_ADDRESS"
+  exit 1
+fi
+
+swift-ring-builder object.builder remove --yes --ip $address
+[ -e "object-1.builder" ] && swift-ring-builder object-1.builder remove --yes --ip $address
+swift-ring-builder container.builder remove --yes --ip $address
+swift-ring-builder account.builder remove --yes --ip $address
