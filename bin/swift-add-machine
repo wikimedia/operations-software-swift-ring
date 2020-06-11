@@ -80,7 +80,7 @@ if [ "${partition_scheme}" == "labs" ]; then
   object_partitions="lv-a1"
   account_partitions="lv-a1"
   container_partitions="lv-a1"
-  ssd_partitions=""
+  ssd_partitions="lv-a1"
 fi
 
 devport=6010
