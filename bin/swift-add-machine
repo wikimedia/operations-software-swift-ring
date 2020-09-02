@@ -52,12 +52,11 @@ function zone_for_address() {
 
 if [ -z "${address}" ]; then
   echo "usage: $(basename $0) IP_ADDRESS"
-  echo "   PART_SCHEME can be one of: dell prod labs"
   echo "   from environment:"
   echo "     * object_weight initial object weight"
   echo "     * nonobject_weight initial non-object weight"
   echo "     * zone override zone autodetection"
-  echo "     * partition_scheme override partition scheme (prod/labs)"
+  echo "     * partition_scheme override partition scheme (prod/prod24/labs)"
   exit 1
 fi
 
@@ -71,6 +70,14 @@ fi
 
 if [ "${partition_scheme}" == "prod" ]; then
   object_partitions="sdc1 sdd1 sde1 sdf1 sdg1 sdh1 sdi1 sdj1 sdk1 sdl1 sdm1 sdn1"
+  account_partitions="sda3 sdb3"
+  container_partitions="sda3 sdb3"
+  ssd_partitions="sda4 sdb4"
+fi
+
+if [ "${partition_scheme}" == "prod24" ]; then
+  object_partitions="sdc1 sdd1 sde1 sdf1 sdg1 sdh1 sdi1 sdj1 sdk1 sdl1 sdm1 sdn1 \
+      sdo1 sdp1 sdq1 sdr1 sds1 sdt1 sdu1 sdv1 sdw1 sdx1 sdy1 sdz1"
   account_partitions="sda3 sdb3"
   container_partitions="sda3 sdb3"
   ssd_partitions="sda4 sdb4"
