@@ -1,7 +1,7 @@
 thanos-prod/object-1.builder, build version 53, id 6a28d823bf8842de9181c5db1adc133a
 65536 partitions, 4.000000 replicas, 2 regions, 8 zones, 16 devices, 0.00 balance, 0.00 dispersion
-The minimum number of hours before a partition can be reassigned is 3 (2:59:54 remaining)
-The overload factor is 15.00% (0.150000)
+The minimum number of hours before a partition can be reassigned is 3 (0:00:00 remaining)
+The overload factor is 3.00% (0.030000)
 Ring file thanos-prod/object-1.ring.gz is up-to-date
 Devices:   id region zone    ip address:port replication ip:port  name weight partitions balance flags meta
             8      1    1    10.64.0.75:6022     10.64.0.75:6022  sda4 300.00      16384    0.00       

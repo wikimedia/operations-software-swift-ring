@@ -1,7 +1,7 @@
 eqiad-prod/object-1.builder, build version 271, id 5ee2e57f5ba24935a6871692716fdaa9
 65536 partitions, 3.000000 replicas, 1 regions, 6 zones, 80 devices, 0.51 balance, 0.00 dispersion
-The minimum number of hours before a partition can be reassigned is 24 (23:59:51 remaining)
-The overload factor is 10.00% (0.100000)
+The minimum number of hours before a partition can be reassigned is 24 (0:00:00 remaining)
+The overload factor is 3.00% (0.030000)
 Ring file eqiad-prod/object-1.ring.gz is up-to-date
 Devices:   id region zone   ip address:port replication ip:port  name weight partitions balance flags meta
             0      1    1  10.64.0.113:6022    10.64.0.113:6022  sda4 311.00       2898   -0.02       
