@@ -1,4 +1,4 @@
-eqiad-prod/account.builder, build version 492, id ea96f5c4a6bd495ebd5e940ce3d39de3
+eqiad-prod/account.builder, build version 494, id ea96f5c4a6bd495ebd5e940ce3d39de3
 65536 partitions, 3.000000 replicas, 1 regions, 4 zones, 88 devices, 0.04 balance, 0.00 dispersion
 The minimum number of hours before a partition can be reassigned is 0 (0:00:00 remaining)
 The overload factor is 10.00% (0.100000)
