@@ -90,6 +90,13 @@ if [ "${partition_scheme}" == "labs" ]; then
   ssd_partitions="lv-a1"
 fi
 
+if [ "${partition_scheme}" == "pontoon" ]; then
+  object_partitions="lda1"
+  account_partitions="lda1"
+  container_partitions="lda1"
+  ssd_partitions="lda1"
+fi
+
 devport=6010
 for dev in $object_partitions; do
   swift-ring-builder object.builder add --region $region --zone $zone \
