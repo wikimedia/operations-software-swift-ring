@@ -29,6 +29,10 @@ Usage
 
         make deploy DESTHOST=puppet.eqiad.wmnet
 
+* To deploy a single 'target' (i.e. subdirectory in this repository)
+
+        make deploy DESTHOST=puppet.eqiad.wmnet TARGETS=<subdir>
+
 
 Testing
 -------
