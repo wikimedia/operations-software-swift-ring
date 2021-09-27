@@ -17,6 +17,7 @@ Usage
 -----
 
 * Make sure you have `swift-ring-builder` tool (`swift` debian package >= 2.2.2)
+* Also install `rsync` (needed for deployment)
 * Make the appropriate changes to the relevant swift cluster and ring (most
   likely `object.builder`)
 * Rebuild the rings that have been changed:
