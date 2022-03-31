@@ -6,7 +6,10 @@ RING_FILES=$(foreach builder,$(BUILDER_FILES),$(subst .builder,.ring.gz,$(builde
 DUMP_FILES=$(foreach builder,$(BUILDER_FILES),$(subst .builder,.dump,$(builder)))
 DISPERSION_FILES=$(foreach builder,$(BUILDER_FILES),$(subst .builder,.dispersion,$(builder)))
 
-rebuild: $(RING_FILES) $(DUMP_FILES) $(DISPERSION_FILES)
+quit:
+	$(error "OBSOLETE: see https://wikitech.wikimedia.org/wiki/Swift/Ring_Management")
+
+rebuild: quit $(RING_FILES) $(DUMP_FILES) $(DISPERSION_FILES)
 
 %.dump: %.builder
 	swift-ring-builder $^ > $@
@@ -20,7 +23,7 @@ rebuild: $(RING_FILES) $(DUMP_FILES) $(DISPERSION_FILES)
 	swift-ring-builder $^ write_ring
 
 # TODO(fgiunchedi): rsync HEAD, not the working tree
-deploy:
+deploy: quit
 	[ -n "$(DESTHOST)" ] || { echo 'set DESTHOST to deploy'; exit 1; }
 	rsync --progress --verbose --archive --compress --relative \
 		$(RING_FILES) $(BUILDER_FILES) $(DESTHOST):swift-ring

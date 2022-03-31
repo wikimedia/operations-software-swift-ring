@@ -1,5 +1,10 @@
-swift ring management via git
-=============================
+OBSOLETE swift ring management via git
+======================================
+
+**DO NOT USE** This is how we used to manage swift rings, but has been
+replaced by newer more automatic ring management - see
+[Wikitech](https://wikitech.wikimedia.org/wiki/Swift/Ring_Management) for
+details.
 
 This repository allows the management of swift rings via git. The main
 reason to do this is peer reviews before pushing and better tracking and
